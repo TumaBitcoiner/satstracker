@@ -5,6 +5,14 @@ find_package(Qt6 REQUIRED COMPONENTS Quick)
 
 set(SOURCES
     main.cpp
+
+    Common.h
+
+    Wallet.h
+    Wallet.cpp
+    
+    Transaction.h
+    Transaction.cpp
  )
     
 qt_add_executable(satstracker ${SOURCES})
