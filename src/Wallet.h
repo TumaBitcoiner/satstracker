@@ -1,12 +1,26 @@
 #pragma once
+#include <QObject>
+#include <QtQml/qqml.h>
 #include "Transaction.h"
 
-class Wallet {
+class Wallet : public QObject {
+
+	Q_OBJECT
+	Q_PROPERTY(QString name READ getWalletName)
+	Q_PROPERTY(int amount READ getTotalAmount)
+	QML_ELEMENT
 
 public:
 
 	Wallet();
 	~Wallet();
+
+	int getTotalAmount() const { return totalAmount_; };
+	QString getWalletName() const { return walletName_; };
+	void addTransaction(Transaction& newTransaction);
+	
+public slots:
+	void onAddedWallet();
 
 private:
 
@@ -17,6 +31,6 @@ private:
 	std::vector<Transaction> transactionList_;
 
 	// Wallet name
-	std::string walletName{ "Wallet" };
+	QString walletName_{ "Wallet" };
 
 };
